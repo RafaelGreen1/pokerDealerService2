@@ -20,13 +20,16 @@ namespace pokerDealerService2.Controllers
             return "Hello";
         }
 
-        public string GetAddUser(string username, string password)
+        public string GetAddUser(string username, string password, 
+            string forename, string lastname, string email, string phone)
         {
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = "Data Source=az4x4aulim.database.windows.net;Initial Catalog=pokerDealerService_db;Integrated Security=False;User ID=raf;Password=20031363rT;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             conn.Open();
 
-            string queryString = "INSERT INTO dbo.Users VALUES ('" + username + "', '" + password + "');";
+            string queryString = "INSERT INTO dbo.Users VALUES ('" + username + "', '" + password +
+                   "', '" + forename + "', '" + lastname +
+                   "', '" + email + "', '" + phone + "');";
             SqlCommand command = new SqlCommand(queryString, conn);
             int rowsAffected = command.ExecuteNonQuery();
             
