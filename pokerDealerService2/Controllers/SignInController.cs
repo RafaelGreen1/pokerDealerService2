@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Microsoft.WindowsAzure.Mobile.Service;
+using System.Data.SqlClient;
 
 namespace pokerDealerService2.Controllers
 {
@@ -17,6 +18,24 @@ namespace pokerDealerService2.Controllers
         {
             Services.Log.Info("Hello from custom controller!");
             return "Hello";
+        }
+
+        public string GetAddUser(string username, string password)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = "Data Source=az4x4aulim.database.windows.net;Initial Catalog=pokerDealerService_db;Integrated Security=False;User ID=raf;Password=20031363rT;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            conn.Open();
+
+            string queryString = "INSERT INTO dbo.Users VALUES ('" + username + "', '" + password + "');";
+            SqlCommand command = new SqlCommand(queryString, conn);
+            int rowsAffected = command.ExecuteNonQuery();
+            
+            conn.Close();
+            if (rowsAffected == 1)
+            {
+                return "New user (" + username + ") has been added";
+            }
+            return "Sign in failed!";
         }
 
     }

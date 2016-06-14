@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pokerDealerService2", "pokerDealerService2\pokerDealerService2.csproj", "{E81C2058-6109-4E35-B040-7F8D8BB1A28F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test2", "test2\test2.csproj", "{7B008602-25A6-4039-B6AD-08D67601A864}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E81C2058-6109-4E35-B040-7F8D8BB1A28F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E81C2058-6109-4E35-B040-7F8D8BB1A28F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E81C2058-6109-4E35-B040-7F8D8BB1A28F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B008602-25A6-4039-B6AD-08D67601A864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B008602-25A6-4039-B6AD-08D67601A864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B008602-25A6-4039-B6AD-08D67601A864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B008602-25A6-4039-B6AD-08D67601A864}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
