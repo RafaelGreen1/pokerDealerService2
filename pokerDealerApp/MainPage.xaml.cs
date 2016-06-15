@@ -31,5 +31,10 @@ namespace pokerDealerApp
         {
             this.Frame.Navigate(typeof(SignInPage));
         }
+
+        private void btnLogIn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

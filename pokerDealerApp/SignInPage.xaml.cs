@@ -27,9 +27,11 @@ namespace pokerDealerApp
             this.InitializeComponent();
         }
 
-        private void btnSignIn_Click(object sender, RoutedEventArgs e)
+        private async void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
-
+            string res = await PokerDealerProxy.addUser(this.txtUsermame.Text, this.txtPassword.Text,
+                this.txtForename.Text, this.txtLastname.Text, this.txtEmail.Text, this.txtPhone.Text);
+            this.txtResult.Text = res;
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)

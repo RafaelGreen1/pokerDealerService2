@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace pokerDealerApp
 {
@@ -105,5 +106,9 @@ namespace pokerDealerApp
             //TODO: Save application state and stop any background activity
             deferral.Complete();
         }
+
+        public static IMobileServiceClient MobileService = new
+            MobileServiceClient("http://pokerdealerservice2.azure-mobile.net/",
+                "zMExGHxmtuExpMtwuKzJfhJAJpcunv63");
     }
 }

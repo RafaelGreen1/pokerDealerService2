@@ -8,13 +8,15 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="txtTitle" HorizontalAlignment="Left" Margin="202,10,0,0" Grid.RowSpan="2" TextWrapping="Wrap" Text="Poker Dealer" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" FontStyle="Italic"/>
-        <Button x:Name="btnSignIn" Content="Sign in" HorizontalAlignment="Left" Margin="413,179,0,0" Grid.RowSpan="2" VerticalAlignment="Top" FontSize="48" Click="btnSignIn_Click"/>
-        <Button x:Name="btnLogIn" Content="Log in" HorizontalAlignment="Left" Margin="49,179,0,0" Grid.RowSpan="2" VerticalAlignment="Top" FontSize="48"/>
+        <TextBox x:Name="txtTitle" HorizontalAlignment="Left" Margin="202,14,0,0" TextWrapping="Wrap" Text="Poker Dealer" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" FontStyle="Italic" Height="60" Width="239"/>
+        <Button x:Name="btnSignIn" Content="Sign Up" HorizontalAlignment="Left" Margin="413,173,0,0" VerticalAlignment="Top" FontSize="48" Click="btnSignIn_Click" Height="76" Width="187"/>
+        <Button x:Name="btnLogIn" Content="Log in" HorizontalAlignment="Left" Margin="49,173,0,0" VerticalAlignment="Top" FontSize="48" Height="76" Width="151" Click="btnLogIn_Click"/>
 
     </Grid>
 </Page>

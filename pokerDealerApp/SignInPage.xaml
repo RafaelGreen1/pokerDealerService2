@@ -8,7 +8,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBox x:Name="txtTitle" HorizontalAlignment="Left" Margin="246,10,0,0" TextWrapping="Wrap" Text="Sign in" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" FontStyle="Italic"/>
+        <TextBox x:Name="txtTitle" HorizontalAlignment="Left" Margin="246,10,0,0" TextWrapping="Wrap" Text="Sign up" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" FontStyle="Italic"/>
         <TextBox x:Name="txtUsermame" HorizontalAlignment="Left" Height="40" Margin="107,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="179" FontSize="22"/>
         <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Height="40" Margin="107,143,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="179" FontSize="22"/>
         <TextBox x:Name="txtForename" HorizontalAlignment="Left" Height="40" Margin="107,187,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="179" FontSize="22"/>
@@ -21,12 +21,13 @@
         <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="298,102,0,0" TextWrapping="Wrap" Text="lastname:" VerticalAlignment="Top" Height="40" Width="92" FontSize="20"/>
         <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="298,146,0,0" TextWrapping="Wrap" Text="phone:" VerticalAlignment="Top" Height="40" Width="92" FontSize="20"/>
         <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="298,186,0,0" TextWrapping="Wrap" Text="email:" VerticalAlignment="Top" Height="40" Width="92" FontSize="20"/>
-        <Button x:Name="btnSignIn" Content="Sign in" HorizontalAlignment="Left" Height="41" Margin="162,275,0,0" VerticalAlignment="Top" Width="124" FontSize="20" Background="#3300FF00" Click="btnSignIn_Click"/>
-        <Button x:Name="btnClear" Content="Clear" HorizontalAlignment="Left" Margin="395,275,0,0" VerticalAlignment="Top" Height="41" Width="124" Click="btnClear_Click" FontSize="20"/>
-        <Button x:Name="btnBack" Content="" HorizontalAlignment="Left" Margin="57,277,0,0" VerticalAlignment="Top" Height="41" Width="45" Click="btnBack_Click">
+        <Button x:Name="btnSignIn" Content="Sign Up" HorizontalAlignment="Left" Height="41" Margin="162,239,0,0" VerticalAlignment="Top" Width="124" FontSize="20" Background="#3300FF00" Click="btnSignIn_Click"/>
+        <Button x:Name="btnClear" Content="Clear" HorizontalAlignment="Left" Margin="395,239,0,0" VerticalAlignment="Top" Height="41" Width="124" Click="btnClear_Click" FontSize="20"/>
+        <Button x:Name="btnBack" Content="" HorizontalAlignment="Left" Margin="25,277,0,0" VerticalAlignment="Top" Height="41" Width="45" Click="btnBack_Click">
             <Button.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Assets/StoreLogo.png"/>
             </Button.Background>
         </Button>
+        <TextBlock x:Name="txtResult" HorizontalAlignment="Left" Height="38" Margin="131,288,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="369" FontSize="20"/>
     </Grid>
 </Page>
