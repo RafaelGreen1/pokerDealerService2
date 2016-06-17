@@ -20,7 +20,7 @@ namespace pokerDealerApp
             this.InitializeComponent();
             this.txtMyName.Text = "Welcome " + App.username + "!";
 
-            System.TimeSpan period = System.TimeSpan.FromMilliseconds(3000);
+            System.TimeSpan period = System.TimeSpan.FromMilliseconds(500);
 
             ThreadPoolTimer PeriodicTimer = ThreadPoolTimer.CreatePeriodicTimer((source) =>
             {
@@ -41,16 +41,19 @@ namespace pokerDealerApp
 
 
 
-        public void updateGameTable()
+        public async void updateGameTable()
         {
-            Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-            () =>
+            GameTable gameTable = await PokerDealerProxy.GetGameTable();
+            if (gameTable.Id1 != 0)
             {
-                this.txtMyName.Text = "aaa";
+                string s = await PokerDealerProxy.GetUsernameById(gameTable.Id1);
+                Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                () =>
+                {
+                    this.txtName1.Text = s;
+                }
+                );
             }
-            );
-            Task.Delay(500);
-
         }
     }
 }
