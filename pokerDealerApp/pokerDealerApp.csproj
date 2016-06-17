@@ -104,6 +104,7 @@
     <Compile Include="gamePage.xaml.cs">
       <DependentUpon>gamePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GameTable.cs" />
     <Compile Include="LogInPage.xaml.cs">
       <DependentUpon>LogInPage.xaml</DependentUpon>
     </Compile>
