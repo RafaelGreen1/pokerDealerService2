@@ -19,6 +19,10 @@ namespace pokerDealerService2.Controllers
                                     , Int32 Id2
                                     , Int32 Id3
                                     , Int32 Id4
+                                    , Int32 active1
+                                    , Int32 active2
+                                    , Int32 active3
+                                    , Int32 active4
                                     , Int32 current_id
                                     , Int32 pot1
                                     , Int32 pot2
@@ -35,6 +39,10 @@ namespace pokerDealerService2.Controllers
                                  " ,Id2=" + Id2 +
                                  " ,Id3=" + Id3 +
                                  " ,Id4=" + Id4 +
+                                 " ,active1=" + active1 +
+                                 " ,active2=" + active2 +
+                                 " ,active3=" + active3 +
+                                 " ,active4=" + active4 +
                                  " ,current_id=" + current_id +
                                  " ,pot1=" + pot1 +
                                  " ,pot2=" + pot2 +

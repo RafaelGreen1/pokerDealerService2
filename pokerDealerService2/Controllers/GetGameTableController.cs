@@ -15,7 +15,7 @@ namespace pokerDealerService2.Controllers
         public ApiServices Services { get; set; }
 
         // GET api/GetGameTable
-        public GameTable GetGetGameTableController()
+        public GameTable GetGetGameTable()
         {
             SqlConnection conn = new SqlConnection("Data Source=az4x4aulim.database.windows.net;Initial Catalog=pokerDealerService_db;Integrated Security=False;User ID=raf;Password=20031363rT;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             String sql = "SELECT * FROM dbo.Game";
@@ -30,6 +30,10 @@ namespace pokerDealerService2.Controllers
                 Id2 = Int32.Parse(myReader["Id2"].ToString()),
                 Id3 = Int32.Parse(myReader["Id3"].ToString()),
                 Id4 = Int32.Parse(myReader["Id4"].ToString()),
+                active1 = Int32.Parse(myReader["active1"].ToString()),
+                active2 = Int32.Parse(myReader["active2"].ToString()),
+                active3 = Int32.Parse(myReader["active3"].ToString()),
+                active4 = Int32.Parse(myReader["active4"].ToString()),
                 current_id = Int32.Parse(myReader["current_id"].ToString()),
                 pot1 = Int32.Parse(myReader["pot1"].ToString()),
                 pot2 = Int32.Parse(myReader["pot2"].ToString()),
@@ -41,6 +45,7 @@ namespace pokerDealerService2.Controllers
                 state = myReader["state"].ToString()
             };
             myReader.Close();
+            conn.Close();
             return res;
         }
 

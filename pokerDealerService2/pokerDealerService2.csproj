@@ -245,13 +245,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AddDollarsByUsernameController.cs" />
     <Compile Include="Controllers\FillFirstAvailabIeIdController.cs" />
+    <Compile Include="Controllers\GameResetController.cs" />
     <Compile Include="Controllers\GetDollarsByIdController.cs" />
     <Compile Include="Controllers\GetGameTableController.cs" />
     <Compile Include="Controllers\GetUsernameByIdController.cs" />
     <Compile Include="Controllers\IsActiveGameController.cs" />
     <Compile Include="Controllers\IsFreePlaceController.cs" />
     <Compile Include="Controllers\LogInUserController.cs" />
+    <Compile Include="Controllers\MoveCurrentController.cs" />
+    <Compile Include="Controllers\MoveStateController.cs" />
     <Compile Include="Controllers\ReduceDollarsByIdController.cs" />
     <Compile Include="Controllers\SetGameTableController.cs" />
     <Compile Include="Controllers\SignInController.cs" />
