@@ -2,11 +2,7 @@
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-using Windows.System.Threading;
-using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -34,6 +30,10 @@ namespace pokerDealerApp
         {
             GameTable gameTable = await PokerDealerProxy.GetGameTable();
             gameTable.active = 1;
+            if (gameTable.Id4 != 0) gameTable.current_id = 4;
+            if (gameTable.Id3 != 0) gameTable.current_id = 3;
+            if (gameTable.Id2 != 0) gameTable.current_id = 2;
+            if (gameTable.Id1 != 0) gameTable.current_id = 1;
             gameTable.state = "dealed";
             await PokerDealerProxy.SetGameTable(gameTable);
             return;
@@ -45,9 +45,8 @@ namespace pokerDealerApp
         {
             while (true)
             {
-                await Task.Delay(2000);
+                await Task.Delay(500);
                 GameTable gameTable = await PokerDealerProxy.GetGameTable();
-                if (this.gameTable.Equals(gameTable)) return;
 
                 this.gameTable = gameTable;
                 string username1 = "", username2 = "", username3 = "", username4 = "";
@@ -118,6 +117,12 @@ namespace pokerDealerApp
                 {
                     riverCard();
                 }
+
+                invertVisibility(this.imgFace1, 1);
+                invertVisibility(this.imgFace2, 2);
+                invertVisibility(this.imgFace3, 3);
+                invertVisibility(this.imgFace4, 4);
+
             }
 
         }
@@ -129,7 +134,6 @@ namespace pokerDealerApp
 
         public void clearCards()
         {
-
             this.imgCard11.Visibility = Visibility.Collapsed;
             this.imgCard12.Visibility = Visibility.Collapsed;
             this.imgCard13.Visibility = Visibility.Collapsed;
@@ -147,7 +151,6 @@ namespace pokerDealerApp
 
         public void dealCards()
         {
-
             if (!this.txtName1.Text.Equals("")) this.imgCard11.Visibility = Visibility.Visible;
             if (!this.txtName2.Text.Equals("")) this.imgCard12.Visibility = Visibility.Visible;
             if (!this.txtName3.Text.Equals("")) this.imgCard13.Visibility = Visibility.Visible;
@@ -156,7 +159,6 @@ namespace pokerDealerApp
             if (!this.txtName2.Text.Equals("")) this.imgCard22.Visibility = Visibility.Visible;
             if (!this.txtName3.Text.Equals("")) this.imgCard23.Visibility = Visibility.Visible;
             if (!this.txtName4.Text.Equals("")) this.imgCard24.Visibility = Visibility.Visible;
-
         }
 
         public void flopCards()
@@ -168,16 +170,49 @@ namespace pokerDealerApp
 
         public void turnCard()
         {
-
             this.imgTurn.Visibility = Visibility.Visible;
-
         }
 
         public void riverCard()
         {
-
             this.imgRiver.Visibility = Visibility.Visible;
         }
 
+        public void invertVisibility(Image img, int id)
+        {
+            if (gameTable.current_id == id)
+            {
+                if (img.Visibility == Visibility.Visible)
+                {
+                    img.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    img.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
+        private async void btnLeave_Click(object sender, RoutedEventArgs e)
+        {
+            GameTable gameTable = await PokerDealerProxy.GetGameTable();
+            if (!gameTable.state.Equals("clear") && !gameTable.state.Equals("river")) return;
+            if (gameTable.Id1 == App.Id) { gameTable.Id1 = 0; gameTable.pot1 = 0; }
+            if (gameTable.Id2 == App.Id) { gameTable.Id2 = 0; gameTable.pot2 = 0; }
+            if (gameTable.Id3 == App.Id) { gameTable.Id3 = 0; gameTable.pot3 = 0; }
+            if (gameTable.Id4 == App.Id) { gameTable.Id4 = 0; gameTable.pot4 = 0; }
+            if (gameTable.Id1 + gameTable.Id2 + gameTable.Id2 + gameTable.Id3 == 0)
+            {
+                gameTable.active = 0;
+                gameTable.state = "clear";
+            }
+            if (gameTable.Id4 != 0) gameTable.currentFirstPlayer = 4;
+            if (gameTable.Id3 != 0) gameTable.currentFirstPlayer = 3;
+            if (gameTable.Id2 != 0) gameTable.currentFirstPlayer = 2;
+            if (gameTable.Id1 != 0) gameTable.currentFirstPlayer = 1;
+
+            await PokerDealerProxy.SetGameTable(gameTable);
+            return;
+        }
     }
 }

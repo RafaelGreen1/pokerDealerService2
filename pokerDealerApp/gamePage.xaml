@@ -53,9 +53,9 @@
         </Button>
         <TextBox x:Name="txtMyName" HorizontalAlignment="Left" Margin="428,4,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="137" Height="68" BorderThickness="0" InputScope="Text" IsReadOnly="True" FontSize="20"/>
         <Button x:Name="btnStart" Content="start" HorizontalAlignment="Left" Margin="551,83,0,0" VerticalAlignment="Top" FontSize="24" Height="42" Width="79" Click="btnStart_Click"/>
-        <Button x:Name="btnLeave" Content="leave" HorizontalAlignment="Left" Margin="551,131,0,0" VerticalAlignment="Top" FontSize="24" Height="42" Width="79" Click="btnStart_Click"/>
         <Button x:Name="btnSetWinner" Content="set&#xD;&#xA;winner" HorizontalAlignment="Left" Margin="551,179,0,0" VerticalAlignment="Top" FontSize="16" Height="61" Width="79" Click="btnStart_Click"/>
         <ComboBox x:Name="cboWinner" HorizontalAlignment="Left" Margin="551,254,0,0" VerticalAlignment="Top" Width="79" FontSize="12"/>
+        <Button x:Name="btnLeave" Content="leave" HorizontalAlignment="Left" Margin="551,131,0,0" VerticalAlignment="Top" Width="79" Height="42" FontSize="24" Click="btnLeave_Click"/>
 
     </Grid>
 </Page>
