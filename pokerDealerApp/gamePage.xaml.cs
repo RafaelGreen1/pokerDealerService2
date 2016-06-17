@@ -30,10 +30,38 @@ namespace pokerDealerApp
         {
             GameTable gameTable = await PokerDealerProxy.GetGameTable();
             gameTable.active = 1;
-            if (gameTable.Id4 != 0) gameTable.current_id = 4;
-            if (gameTable.Id3 != 0) gameTable.current_id = 3;
-            if (gameTable.Id2 != 0) gameTable.current_id = 2;
-            if (gameTable.Id1 != 0) gameTable.current_id = 1;
+            if (gameTable.Id4 != 0)
+            {
+                gameTable.current_id = 4;
+                gameTable.active1 = 1;
+            } else
+            {
+                gameTable.active1 = 0;
+            }
+            if (gameTable.Id3 != 0)
+            {
+                gameTable.current_id = 3;
+                gameTable.active2 = 1;
+            } else
+            {
+                gameTable.active2 = 0;
+            }
+            if (gameTable.Id2 != 0)
+            {
+                gameTable.current_id = 2;
+                gameTable.active3 = 1;
+            } else
+            {
+                gameTable.active3 = 0;
+            }
+            if (gameTable.Id1 != 0)
+            {
+                gameTable.current_id = 1;
+                gameTable.active4 = 1;
+            } else
+            {
+                gameTable.active4 = 0;
+            }
             gameTable.state = "dealed";
             await PokerDealerProxy.SetGameTable(gameTable);
             return;
@@ -91,6 +119,11 @@ namespace pokerDealerApp
                 updateTextBox(this.txtName3, username3);
                 updateTextBox(this.txtName4, username4);
 
+                updateTextBox(this.txtTotal1, dollars1);
+                updateTextBox(this.txtTotal2, dollars2);
+                updateTextBox(this.txtTotal3, dollars3);
+                updateTextBox(this.txtTotal4, dollars4);
+
                 /* update cards */
                 if (gameTable.state.Trim().Equals("clear"))
                 {
@@ -99,7 +132,7 @@ namespace pokerDealerApp
 
                 if (gameTable.state.Trim().Equals("dealed"))
                 {
-                    dealCards();
+                    dealCards(gameTable);
                 }
 
 
@@ -123,6 +156,8 @@ namespace pokerDealerApp
                 invertVisibility(this.imgFace3, 3);
                 invertVisibility(this.imgFace4, 4);
 
+
+                clearInactiveCards(gameTable);
             }
 
         }
@@ -130,6 +165,18 @@ namespace pokerDealerApp
         public void updateTextBox(TextBox textBox, string s)
         {
             textBox.Text = s;
+        }
+
+        private void clearInactiveCards(GameTable gameTable)
+        {
+            if (gameTable.active1 == 0) this.imgCard11.Visibility = Visibility.Collapsed;
+            if (gameTable.active2 == 0) this.imgCard12.Visibility = Visibility.Collapsed;
+            if (gameTable.active3 == 0) this.imgCard13.Visibility = Visibility.Collapsed;
+            if (gameTable.active4 == 0) this.imgCard14.Visibility = Visibility.Collapsed;
+            if (gameTable.active1 == 0) this.imgCard21.Visibility = Visibility.Collapsed;
+            if (gameTable.active2 == 0) this.imgCard22.Visibility = Visibility.Collapsed;
+            if (gameTable.active3 == 0) this.imgCard23.Visibility = Visibility.Collapsed;
+            if (gameTable.active4 == 0) this.imgCard24.Visibility = Visibility.Collapsed;
         }
 
         public void clearCards()
@@ -149,16 +196,17 @@ namespace pokerDealerApp
             this.imgRiver.Visibility = Visibility.Collapsed;
         }
 
-        public void dealCards()
+        private void dealCards(GameTable gameTable)
         {
-            if (!this.txtName1.Text.Equals("")) this.imgCard11.Visibility = Visibility.Visible;
-            if (!this.txtName2.Text.Equals("")) this.imgCard12.Visibility = Visibility.Visible;
-            if (!this.txtName3.Text.Equals("")) this.imgCard13.Visibility = Visibility.Visible;
-            if (!this.txtName4.Text.Equals("")) this.imgCard14.Visibility = Visibility.Visible;
-            if (!this.txtName1.Text.Equals("")) this.imgCard21.Visibility = Visibility.Visible;
-            if (!this.txtName2.Text.Equals("")) this.imgCard22.Visibility = Visibility.Visible;
-            if (!this.txtName3.Text.Equals("")) this.imgCard23.Visibility = Visibility.Visible;
-            if (!this.txtName4.Text.Equals("")) this.imgCard24.Visibility = Visibility.Visible;
+
+            if (gameTable.active1 == 1) this.imgCard11.Visibility = Visibility.Visible;
+            if (gameTable.active2 == 1) this.imgCard12.Visibility = Visibility.Visible;
+            if (gameTable.active3 == 1) this.imgCard13.Visibility = Visibility.Visible;
+            if (gameTable.active4 == 1) this.imgCard14.Visibility = Visibility.Visible;
+            if (gameTable.active1 == 1) this.imgCard21.Visibility = Visibility.Visible;
+            if (gameTable.active2 == 1) this.imgCard22.Visibility = Visibility.Visible;
+            if (gameTable.active3 == 1) this.imgCard23.Visibility = Visibility.Visible;
+            if (gameTable.active4 == 1) this.imgCard24.Visibility = Visibility.Visible;
         }
 
         public void flopCards()
@@ -197,10 +245,10 @@ namespace pokerDealerApp
         {
             GameTable gameTable = await PokerDealerProxy.GetGameTable();
             if (!gameTable.state.Equals("clear") && !gameTable.state.Equals("river")) return;
-            if (gameTable.Id1 == App.Id) { gameTable.Id1 = 0; gameTable.pot1 = 0; }
-            if (gameTable.Id2 == App.Id) { gameTable.Id2 = 0; gameTable.pot2 = 0; }
-            if (gameTable.Id3 == App.Id) { gameTable.Id3 = 0; gameTable.pot3 = 0; }
-            if (gameTable.Id4 == App.Id) { gameTable.Id4 = 0; gameTable.pot4 = 0; }
+            if (gameTable.Id1 == App.Id) { gameTable.Id1 = 0; gameTable.pot1 = 0; gameTable.active1 = 0; }
+            if (gameTable.Id2 == App.Id) { gameTable.Id2 = 0; gameTable.pot2 = 0; gameTable.active2 = 0; }
+            if (gameTable.Id3 == App.Id) { gameTable.Id3 = 0; gameTable.pot3 = 0; gameTable.active3 = 0; }
+            if (gameTable.Id4 == App.Id) { gameTable.Id4 = 0; gameTable.pot4 = 0; gameTable.active4 = 0; }
             if (gameTable.Id1 + gameTable.Id2 + gameTable.Id2 + gameTable.Id3 == 0)
             {
                 gameTable.active = 0;

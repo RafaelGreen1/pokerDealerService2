@@ -17,6 +17,10 @@ namespace pokerDealerApp
         public int Id2 { get; set; }
         public int Id3 { get; set; }
         public int Id4 { get; set; }
+        public int active1 { get; set; }
+        public int active2 { get; set; }
+        public int active3 { get; set; }
+        public int active4 { get; set; }
         public int current_id { get; set; }
         public int pot1 { get; set; }
         public int pot2 { get; set; }
