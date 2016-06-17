@@ -39,12 +39,29 @@ namespace pokerDealerApp
             if (resInt == 0)
             {
                 this.txtResult.Text = "login failed, wrong credentials!";
-            } else
-            {
-                App.username = this.txtUsermame.Text;
-                App.Id = resInt;
-                this.Frame.Navigate(typeof(gamePage));
+                return;
             }
+
+            res = await PokerDealerProxy.IsFreePlace();
+            resInt = Int32.Parse(res);
+            if (resInt == 0)
+            {
+                this.txtResult.Text = "Sorry, no free place.";
+                return;
+            }
+
+            res = await PokerDealerProxy.IsActiveGame();
+            resInt = Int32.Parse(res);
+            if (resInt == 1)
+            {
+                this.txtResult.Text = "Sorry, the game has already started.";
+                return;
+            }
+
+            App.username = this.txtUsermame.Text;
+            App.Id = resInt;
+            await PokerDealerProxy.FillFirstAvailableId(resInt);
+            this.Frame.Navigate(typeof(gamePage));
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)

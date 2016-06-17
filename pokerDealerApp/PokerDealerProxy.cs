@@ -32,5 +32,61 @@ namespace pokerDealerApp
                     {"password", password}
                 });
         }
+
+        public static async Task<string> IsFreePlace()
+        {
+            return await App.MobileService.InvokeApiAsync<string>("isfreeplace/isfreeplace",
+                            HttpMethod.Get,
+                            new Dictionary<string, string>() {
+                });
+        }
+
+        public static async Task<string> IsActiveGame()
+        {
+            return await App.MobileService.InvokeApiAsync<string>("isactivegame/isactivegame",
+                            HttpMethod.Get,
+                            new Dictionary<string, string>()
+                            {
+                            });
+        }
+
+        public static async Task<string> GetUsernameById(Int32 id)
+        {
+            return await App.MobileService.InvokeApiAsync<string>("getusernamebyid/getusernamebyid",
+                            HttpMethod.Get,
+                            new Dictionary<string, string>()
+                            {
+                                {"id", id.ToString()}
+                            });
+        }
+        public static async Task<string> GetDollarsById(Int32 id)
+        {
+            return await App.MobileService.InvokeApiAsync<string>("getdollarsbyid/getdollarsbyid",
+                            HttpMethod.Get,
+                            new Dictionary<string, string>()
+                            {
+                                {"id", id.ToString()}
+                            });
+        }
+
+        public static async Task<string> FillFirstAvailableId(Int32 id)
+        {
+            return await App.MobileService.InvokeApiAsync<string>("FillFirstAvailableId/FillFirstAvailableId".ToLower(),
+                            HttpMethod.Get,
+                            new Dictionary<string, string>()
+                            {
+                                {"id_in", id.ToString()}
+                            });
+        }
+
+        public static async Task<GameTable> GetGameTable()
+        {
+            return await App.MobileService.InvokeApiAsync<GameTable>("GetGameTable/GetGameTable".ToLower(),
+                HttpMethod.Get,
+                new Dictionary<string, string>()
+                {
+                });
+        }
+
     }
 }
