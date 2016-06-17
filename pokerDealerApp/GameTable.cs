@@ -8,6 +8,11 @@ namespace pokerDealerApp
 {
     class GameTable
     {
+        public GameTable ()
+        {
+            Id1 = Id2 = Id3 = Id4 = current_id = pot1 = pot2 = pot3 = pot4 = active = firstPlayer = currentFirstPlayer = 0;
+            state = "clear";
+        }
         public int Id1 { get; set; }
         public int Id2 { get; set; }
         public int Id3 { get; set; }

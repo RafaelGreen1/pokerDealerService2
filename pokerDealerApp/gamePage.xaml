@@ -36,8 +36,8 @@
         <Image x:Name="imgFlop1" HorizontalAlignment="Left" Height="44" Margin="243,254,0,0" VerticalAlignment="Top" Width="35" Source="Assets/card.png"/>
         <Image x:Name="imgFlop2" HorizontalAlignment="Left" Height="44" Margin="279,254,0,0" VerticalAlignment="Top" Width="35" Source="Assets/card.png"/>
         <Image x:Name="imgFlop3" HorizontalAlignment="Left" Height="44" Margin="315,254,0,0" VerticalAlignment="Top" Width="35" Source="Assets/card.png"/>
-        <Image x:Name="imgFlop4" HorizontalAlignment="Left" Height="44" Margin="351,254,0,0" VerticalAlignment="Top" Width="35" Source="Assets/card.png"/>
-        <Image x:Name="imgFlop5" HorizontalAlignment="Left" Height="44" Margin="387,254,0,0" VerticalAlignment="Top" Width="35" Source="Assets/card.png"/>
+        <Image x:Name="imgTurn" HorizontalAlignment="Left" Height="44" Margin="351,254,0,0" VerticalAlignment="Top" Width="35" Source="Assets/card.png"/>
+        <Image x:Name="imgRiver" HorizontalAlignment="Left" Height="44" Margin="387,254,0,0" VerticalAlignment="Top" Width="35" Source="Assets/card.png"/>
         <TextBox x:Name="txtTotalPot" HorizontalAlignment="Left" Margin="320,309,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" Height="29" InputScope="Number"/>
         <TextBox x:Name="txtTitle_Copy" HorizontalAlignment="Left" Margin="271,308,0,0" TextWrapping="Wrap" Text="Pot:" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" FontStyle="Italic" Height="37" Width="38" BorderThickness="0" IsReadOnly="True"/>
         <Button x:Name="btnFold" Content="fold" HorizontalAlignment="Left" Margin="24,90,0,0" VerticalAlignment="Top" FontSize="24" Height="42" Width="79"/>

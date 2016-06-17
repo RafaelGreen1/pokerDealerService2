@@ -88,5 +88,27 @@ namespace pokerDealerApp
                 });
         }
 
+        public static async Task<int> SetGameTable(GameTable gameTable)
+        {
+            return await App.MobileService.InvokeApiAsync<int>("SetGameTable/SetGameTable".ToLower(),
+                HttpMethod.Get,
+                new Dictionary<string, string>()
+                {
+                     {"Id1"                 , gameTable.Id1.ToString()},
+                     {"Id2"                 , gameTable.Id2.ToString()},
+                     {"Id3"                 , gameTable.Id3.ToString()},
+                     {"Id4"                 , gameTable.Id4.ToString()},
+                     {"current_id"          , gameTable.current_id.ToString()},
+                     {"pot1"                , gameTable.pot1.ToString()},
+                     {"pot2"                , gameTable.pot2.ToString()},
+                     {"pot3"                , gameTable.pot3.ToString()},
+                     {"pot4"                , gameTable.pot4.ToString()},
+                     {"active"              , gameTable.active.ToString()},
+                     {"firstPlayer"         , gameTable.firstPlayer.ToString()},
+                     {"currentFirstPlayer"  , gameTable.currentFirstPlayer.ToString()},
+                     {"state"               , gameTable.state.ToString()}
+                });
+        }
+
     }
 }
