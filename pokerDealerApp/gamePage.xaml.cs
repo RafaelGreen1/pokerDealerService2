@@ -43,7 +43,7 @@ namespace pokerDealerApp
 
         public async void updateGameTable()
         {
-            while(true)
+            while (true)
             {
                 await Task.Delay(2000);
                 GameTable gameTable = await PokerDealerProxy.GetGameTable();
@@ -76,21 +76,17 @@ namespace pokerDealerApp
 
 
 
-                Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                    () =>
-                    {
-                        if (!username1.Equals(this.txtName1.Text) || !username2.Equals(this.txtName2.Text)
-                             || !username3.Equals(this.txtName3.Text) || !username4.Equals(this.txtName4.Text))
-                        {
-                            this.cboWinner.Items.Clear();
-                            if (username1 != "") this.cboWinner.Items.Add(username1);
-                            if (username2 != "") this.cboWinner.Items.Add(username2);
-                            if (username3 != "") this.cboWinner.Items.Add(username3);
-                            if (username4 != "") this.cboWinner.Items.Add(username4);
-                        }
 
-                    }
-                    );
+                if (!username1.Equals(this.txtName1.Text) || !username2.Equals(this.txtName2.Text)
+                     || !username3.Equals(this.txtName3.Text) || !username4.Equals(this.txtName4.Text))
+                {
+                    this.cboWinner.Items.Clear();
+                    if (username1 != "") this.cboWinner.Items.Add(username1);
+                    if (username2 != "") this.cboWinner.Items.Add(username2);
+                    if (username3 != "") this.cboWinner.Items.Add(username3);
+                    if (username4 != "") this.cboWinner.Items.Add(username4);
+                }
+
                 updateTextBox(this.txtName1, username1);
                 updateTextBox(this.txtName2, username2);
                 updateTextBox(this.txtName3, username3);
@@ -128,83 +124,59 @@ namespace pokerDealerApp
 
         public void updateTextBox(TextBox textBox, string s)
         {
-            Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                            () =>
-                            {
-                                textBox.Text = s;
-                            }
-                            );
+            textBox.Text = s;
         }
 
         public void clearCards()
         {
-            Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                () =>
-                {
-                    this.imgCard11.Visibility = Visibility.Collapsed;
-                    this.imgCard12.Visibility = Visibility.Collapsed;
-                    this.imgCard13.Visibility = Visibility.Collapsed;
-                    this.imgCard14.Visibility = Visibility.Collapsed;
-                    this.imgCard21.Visibility = Visibility.Collapsed;
-                    this.imgCard22.Visibility = Visibility.Collapsed;
-                    this.imgCard23.Visibility = Visibility.Collapsed;
-                    this.imgCard24.Visibility = Visibility.Collapsed;
-                    this.imgFlop1.Visibility = Visibility.Collapsed;
-                    this.imgFlop2.Visibility = Visibility.Collapsed;
-                    this.imgFlop3.Visibility = Visibility.Collapsed;
-                    this.imgTurn.Visibility = Visibility.Collapsed;
-                    this.imgRiver.Visibility = Visibility.Collapsed;
-                }
-                );
+
+            this.imgCard11.Visibility = Visibility.Collapsed;
+            this.imgCard12.Visibility = Visibility.Collapsed;
+            this.imgCard13.Visibility = Visibility.Collapsed;
+            this.imgCard14.Visibility = Visibility.Collapsed;
+            this.imgCard21.Visibility = Visibility.Collapsed;
+            this.imgCard22.Visibility = Visibility.Collapsed;
+            this.imgCard23.Visibility = Visibility.Collapsed;
+            this.imgCard24.Visibility = Visibility.Collapsed;
+            this.imgFlop1.Visibility = Visibility.Collapsed;
+            this.imgFlop2.Visibility = Visibility.Collapsed;
+            this.imgFlop3.Visibility = Visibility.Collapsed;
+            this.imgTurn.Visibility = Visibility.Collapsed;
+            this.imgRiver.Visibility = Visibility.Collapsed;
         }
 
         public void dealCards()
         {
-            Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                () =>
-                {
-                    if (!this.txtName1.Text.Equals("")) this.imgCard11.Visibility = Visibility.Visible;
-                    if (!this.txtName2.Text.Equals("")) this.imgCard12.Visibility = Visibility.Visible;
-                    if (!this.txtName3.Text.Equals("")) this.imgCard13.Visibility = Visibility.Visible;
-                    if (!this.txtName4.Text.Equals("")) this.imgCard14.Visibility = Visibility.Visible;
-                    if (!this.txtName1.Text.Equals("")) this.imgCard21.Visibility = Visibility.Visible;
-                    if (!this.txtName2.Text.Equals("")) this.imgCard22.Visibility = Visibility.Visible;
-                    if (!this.txtName3.Text.Equals("")) this.imgCard23.Visibility = Visibility.Visible;
-                    if (!this.txtName4.Text.Equals("")) this.imgCard24.Visibility = Visibility.Visible;
-                }
-                );
+
+            if (!this.txtName1.Text.Equals("")) this.imgCard11.Visibility = Visibility.Visible;
+            if (!this.txtName2.Text.Equals("")) this.imgCard12.Visibility = Visibility.Visible;
+            if (!this.txtName3.Text.Equals("")) this.imgCard13.Visibility = Visibility.Visible;
+            if (!this.txtName4.Text.Equals("")) this.imgCard14.Visibility = Visibility.Visible;
+            if (!this.txtName1.Text.Equals("")) this.imgCard21.Visibility = Visibility.Visible;
+            if (!this.txtName2.Text.Equals("")) this.imgCard22.Visibility = Visibility.Visible;
+            if (!this.txtName3.Text.Equals("")) this.imgCard23.Visibility = Visibility.Visible;
+            if (!this.txtName4.Text.Equals("")) this.imgCard24.Visibility = Visibility.Visible;
+
         }
 
         public void flopCards()
         {
-            Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                () =>
-                {
-                    this.imgFlop1.Visibility = Visibility.Visible;
-                    this.imgFlop2.Visibility = Visibility.Visible;
-                    this.imgFlop3.Visibility = Visibility.Visible;
-                }
-                );
+            this.imgFlop1.Visibility = Visibility.Visible;
+            this.imgFlop2.Visibility = Visibility.Visible;
+            this.imgFlop3.Visibility = Visibility.Visible;
         }
 
         public void turnCard()
         {
-            Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                () =>
-                {
-                    this.imgTurn.Visibility = Visibility.Visible;
-                }
-                );
+
+            this.imgTurn.Visibility = Visibility.Visible;
+
         }
 
         public void riverCard()
         {
-            Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                () =>
-                {
-                    this.imgRiver.Visibility = Visibility.Visible;
-                }
-                );
+
+            this.imgRiver.Visibility = Visibility.Visible;
         }
 
     }
