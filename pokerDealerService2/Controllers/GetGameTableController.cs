@@ -26,18 +26,19 @@ namespace pokerDealerService2.Controllers
             myReader.Read();
             GameTable res = new GameTable()
             {
-                Id1                  = Int32.Parse(myReader["Id1"].ToString()),
-                Id2                  = Int32.Parse(myReader["Id2"].ToString()),
-                Id3                  = Int32.Parse(myReader["Id3"].ToString()),
-                Id4                  = Int32.Parse(myReader["Id4"].ToString()),
-                current_id           = Int32.Parse(myReader["current_id"].ToString()),
-                pot1                 = Int32.Parse(myReader["pot1"].ToString()),
-                pot2                 = Int32.Parse(myReader["pot2"].ToString()),
-                pot3                 = Int32.Parse(myReader["pot3"].ToString()),
-                pot4                 = Int32.Parse(myReader["pot4"].ToString()),
-                active               = Int32.Parse(myReader["active"].ToString()),
-                firstPlayer          = Int32.Parse(myReader["firstPlayer"].ToString()),
-                currentFirstPlayer   = Int32.Parse(myReader["currentFirstPlayer"].ToString())
+                Id1 = Int32.Parse(myReader["Id1"].ToString()),
+                Id2 = Int32.Parse(myReader["Id2"].ToString()),
+                Id3 = Int32.Parse(myReader["Id3"].ToString()),
+                Id4 = Int32.Parse(myReader["Id4"].ToString()),
+                current_id = Int32.Parse(myReader["current_id"].ToString()),
+                pot1 = Int32.Parse(myReader["pot1"].ToString()),
+                pot2 = Int32.Parse(myReader["pot2"].ToString()),
+                pot3 = Int32.Parse(myReader["pot3"].ToString()),
+                pot4 = Int32.Parse(myReader["pot4"].ToString()),
+                active = Int32.Parse(myReader["active"].ToString()),
+                firstPlayer = Int32.Parse(myReader["firstPlayer"].ToString()),
+                currentFirstPlayer = Int32.Parse(myReader["currentFirstPlayer"].ToString()),
+                state = myReader["state"].ToString()
             };
             myReader.Close();
             return res;

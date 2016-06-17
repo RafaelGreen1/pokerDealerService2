@@ -16,5 +16,6 @@ namespace pokerDealerService2.DataObjects
         public int active { get; set; }
         public int firstPlayer { get; set; }
         public int currentFirstPlayer { get; set; }
+        public string state { get; set; }
     }
 }

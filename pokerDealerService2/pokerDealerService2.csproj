@@ -245,8 +245,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\FillFirstAvailabIeIdController.cs" />
+    <Compile Include="Controllers\GetDollarsByIdController.cs" />
+    <Compile Include="Controllers\GetGameTableController.cs" />
+    <Compile Include="Controllers\GetUsernameByIdController.cs" />
+    <Compile Include="Controllers\IsActiveGameController.cs" />
+    <Compile Include="Controllers\IsFreePlaceController.cs" />
     <Compile Include="Controllers\LogInUserController.cs" />
     <Compile Include="Controllers\SignInController.cs" />
+    <Compile Include="DataObjects\GameTable.cs" />
     <Compile Include="DataObjects\TodoItem.cs" />
     <Compile Include="Models\MobileServiceContext.cs" />
     <Compile Include="ScheduledJobs\SampleJob.cs" />
