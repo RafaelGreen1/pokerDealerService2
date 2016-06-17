@@ -33,37 +33,38 @@ namespace pokerDealerApp
             if (gameTable.Id4 != 0)
             {
                 gameTable.current_id = 4;
-                gameTable.active1 = 1;
-            } else
-            {
-                gameTable.active1 = 0;
-            }
-            if (gameTable.Id3 != 0)
-            {
-                gameTable.current_id = 3;
-                gameTable.active2 = 1;
-            } else
-            {
-                gameTable.active2 = 0;
-            }
-            if (gameTable.Id2 != 0)
-            {
-                gameTable.current_id = 2;
-                gameTable.active3 = 1;
-            } else
-            {
-                gameTable.active3 = 0;
-            }
-            if (gameTable.Id1 != 0)
-            {
-                gameTable.current_id = 1;
                 gameTable.active4 = 1;
             } else
             {
                 gameTable.active4 = 0;
             }
+            if (gameTable.Id3 != 0)
+            {
+                gameTable.current_id = 3;
+                gameTable.active3 = 1;
+            } else
+            {
+                gameTable.active3 = 0;
+            }
+            if (gameTable.Id2 != 0)
+            {
+                gameTable.current_id = 2;
+                gameTable.active2 = 1;
+            } else
+            {
+                gameTable.active2 = 0;
+            }
+            if (gameTable.Id1 != 0)
+            {
+                gameTable.current_id = 1;
+                gameTable.active1 = 1;
+            } else
+            {
+                gameTable.active1 = 0;
+            }
             gameTable.state = "dealed";
             await PokerDealerProxy.SetGameTable(gameTable);
+            await PokerDealerProxy.MoveFirstPlayer();
             return;
         }
 
@@ -79,26 +80,31 @@ namespace pokerDealerApp
                 this.gameTable = gameTable;
                 string username1 = "", username2 = "", username3 = "", username4 = "";
                 string dollars1 = "", dollars2 = "", dollars3 = "", dollars4 = "";
+                string pot1 = "", pot2 = "", pot3 = "", pot4 = "";
                 if (gameTable.Id1 != 0)
                 {
                     username1 = await PokerDealerProxy.GetUsernameById(gameTable.Id1);
                     dollars1 = await PokerDealerProxy.GetDollarsById(gameTable.Id1);
+                    pot1 = gameTable.pot1.ToString() ;
 
                 }
                 if (gameTable.Id2 != 0)
                 {
                     username2 = await PokerDealerProxy.GetUsernameById(gameTable.Id2);
                     dollars2 = await PokerDealerProxy.GetDollarsById(gameTable.Id2);
+                    pot2 = gameTable.pot2.ToString();
                 }
                 if (gameTable.Id3 != 0)
                 {
                     username3 = await PokerDealerProxy.GetUsernameById(gameTable.Id3);
                     dollars3 = await PokerDealerProxy.GetDollarsById(gameTable.Id3);
+                    pot3 = gameTable.pot3.ToString();
                 }
                 if (gameTable.Id4 != 0)
                 {
                     username4 = await PokerDealerProxy.GetUsernameById(gameTable.Id4);
                     dollars4 = await PokerDealerProxy.GetDollarsById(gameTable.Id4);
+                    pot4 = gameTable.pot4.ToString();
                 }
 
 
@@ -123,6 +129,11 @@ namespace pokerDealerApp
                 updateTextBox(this.txtTotal2, dollars2);
                 updateTextBox(this.txtTotal3, dollars3);
                 updateTextBox(this.txtTotal4, dollars4);
+
+                updateTextBox(this.txtPot1, pot1);
+                updateTextBox(this.txtPot2, pot2);
+                updateTextBox(this.txtPot3, pot3);
+                updateTextBox(this.txtPot4, pot4);
 
                 /* update cards */
                 if (gameTable.state.Trim().Equals("clear"))
@@ -238,6 +249,9 @@ namespace pokerDealerApp
                 {
                     img.Visibility = Visibility.Visible;
                 }
+            } else
+            {
+                img.Visibility = Visibility.Visible;
             }
         }
 
@@ -251,16 +265,38 @@ namespace pokerDealerApp
             if (gameTable.Id4 == App.Id) { gameTable.Id4 = 0; gameTable.pot4 = 0; gameTable.active4 = 0; }
             if (gameTable.Id1 + gameTable.Id2 + gameTable.Id2 + gameTable.Id3 == 0)
             {
-                gameTable.active = 0;
-                gameTable.state = "clear";
+                await PokerDealerProxy.GameReset();
+                return;
             }
-            if (gameTable.Id4 != 0) gameTable.currentFirstPlayer = 4;
-            if (gameTable.Id3 != 0) gameTable.currentFirstPlayer = 3;
-            if (gameTable.Id2 != 0) gameTable.currentFirstPlayer = 2;
-            if (gameTable.Id1 != 0) gameTable.currentFirstPlayer = 1;
+            
 
             await PokerDealerProxy.SetGameTable(gameTable);
             return;
+        }
+
+        private void btnFold_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private async void btnCheck_Click(object sender, RoutedEventArgs e)
+        {
+            await PokerDealerProxy.MoveCurrent();
+        }
+
+        private void btnCall_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnBet_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnSetWinner_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

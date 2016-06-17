@@ -114,5 +114,62 @@ namespace pokerDealerApp
                 });
         }
 
+        public static async Task<int> ReduceDollarsById(Int32 Id, Int32 dollars)
+        {
+            return await App.MobileService.InvokeApiAsync<int>("ReduceDollarsById/ReduceDollarsById".ToLower(),
+                HttpMethod.Get,
+                new Dictionary<string, string>()
+                {
+                    {"Id", Id.ToString() },
+                    {"dollars", dollars.ToString()}
+                });
+        }
+
+        public static async Task<int> AddDollarsByUsername(string username, Int32 dollars)
+        {
+            return await App.MobileService.InvokeApiAsync<int>("AddDollarsByUsername/AddDollarsByUsername".ToLower(),
+                HttpMethod.Get,
+                new Dictionary<string, string>()
+                {
+                    {"username", username },
+                    {"dollars", dollars.ToString()}
+                });
+        }
+        
+        public static async Task<int> MoveFirstPlayer()
+        {
+            return await App.MobileService.InvokeApiAsync<int>("MoveFirstPlayer/MoveFirstPlayer".ToLower(),
+                HttpMethod.Get,
+                new Dictionary<string, string>()
+                {
+                });
+        }
+        
+        public static async Task<int> GameReset()
+        {
+            return await App.MobileService.InvokeApiAsync<int>("GameReset/GameReset".ToLower(),
+                HttpMethod.Get,
+                new Dictionary<string, string>()
+                {
+                });
+        }
+
+        public static async Task<int> MoveState()
+        {
+            return await App.MobileService.InvokeApiAsync<int>("MoveState/MoveState".ToLower(),
+                HttpMethod.Get,
+                new Dictionary<string, string>()
+                {
+                });
+        }
+        
+        public static async Task<int> MoveCurrent()
+        {
+            return await App.MobileService.InvokeApiAsync<int>("MoveCurrent/MoveCurrent".ToLower(),
+                HttpMethod.Get,
+                new Dictionary<string, string>()
+                {
+                });
+        }
     }
 }

@@ -40,11 +40,11 @@
         <Image x:Name="imgRiver" HorizontalAlignment="Left" Height="44" Margin="387,254,0,0" VerticalAlignment="Top" Width="35" Source="Assets/card.png"/>
         <TextBox x:Name="txtTotalPot" HorizontalAlignment="Left" Margin="320,309,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="58" Height="29" InputScope="Number"/>
         <TextBox x:Name="txtTitle_Copy" HorizontalAlignment="Left" Margin="271,308,0,0" TextWrapping="Wrap" Text="Pot:" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" FontStyle="Italic" Height="37" Width="38" BorderThickness="0" IsReadOnly="True"/>
-        <Button x:Name="btnFold" Content="fold" HorizontalAlignment="Left" Margin="24,90,0,0" VerticalAlignment="Top" FontSize="24" Height="42" Width="79"/>
-        <Button x:Name="button_Copy" Content="check" HorizontalAlignment="Left" Margin="24,139,0,0" VerticalAlignment="Top" FontSize="24" Height="40" Width="79"/>
-        <Button x:Name="button_Copy1" Content="call" HorizontalAlignment="Left" Margin="24,186,0,0" VerticalAlignment="Top" FontSize="24" Height="42" Width="79"/>
-        <Button x:Name="button_Copy2" Content="bet" HorizontalAlignment="Left" Margin="24,234,0,0" VerticalAlignment="Top" FontSize="24" Height="42" Width="79"/>
-        <TextBox x:Name="textBox_Copy12" HorizontalAlignment="Left" Margin="45,284,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82" Height="28" InputScope="Number"/>
+        <Button x:Name="btnFold" Content="fold" HorizontalAlignment="Left" Margin="24,90,0,0" VerticalAlignment="Top" FontSize="24" Height="42" Width="79" Click="btnFold_Click"/>
+        <Button x:Name="btnCheck" Content="check" HorizontalAlignment="Left" Margin="24,139,0,0" VerticalAlignment="Top" FontSize="24" Height="40" Width="79" Click="btnCheck_Click"/>
+        <Button x:Name="btnCall" Content="call" HorizontalAlignment="Left" Margin="24,186,0,0" VerticalAlignment="Top" FontSize="24" Height="42" Width="79" Click="btnCall_Click"/>
+        <Button x:Name="btnBet" Content="bet" HorizontalAlignment="Left" Margin="24,234,0,0" VerticalAlignment="Top" FontSize="24" Height="42" Width="79" Click="btnBet_Click"/>
+        <TextBox x:Name="txtBet" HorizontalAlignment="Left" Margin="45,284,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82" Height="28" InputScope="Number"/>
         <TextBox x:Name="txtTitle_Copy1" HorizontalAlignment="Left" Margin="5,284,0,0" TextWrapping="Wrap" Text="bet:" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" FontStyle="Italic" Height="37" Width="38" BorderThickness="0"/>
         <Button x:Name="btnBack" Content="" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" Width="59" Height="36" Click="btnBack_Click">
             <Button.Background>
@@ -53,7 +53,7 @@
         </Button>
         <TextBox x:Name="txtMyName" HorizontalAlignment="Left" Margin="428,4,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="137" Height="68" BorderThickness="0" InputScope="Text" IsReadOnly="True" FontSize="20"/>
         <Button x:Name="btnStart" Content="start" HorizontalAlignment="Left" Margin="551,83,0,0" VerticalAlignment="Top" FontSize="24" Height="42" Width="79" Click="btnStart_Click"/>
-        <Button x:Name="btnSetWinner" Content="set&#xD;&#xA;winner" HorizontalAlignment="Left" Margin="551,179,0,0" VerticalAlignment="Top" FontSize="16" Height="61" Width="79" Click="btnStart_Click"/>
+        <Button x:Name="btnSetWinner" Content="set&#xD;&#xA;winner" HorizontalAlignment="Left" Margin="551,179,0,0" VerticalAlignment="Top" FontSize="16" Height="61" Width="79" Click="btnSetWinner_Click"/>
         <ComboBox x:Name="cboWinner" HorizontalAlignment="Left" Margin="551,254,0,0" VerticalAlignment="Top" Width="79" FontSize="12"/>
         <Button x:Name="btnLeave" Content="leave" HorizontalAlignment="Left" Margin="551,131,0,0" VerticalAlignment="Top" Width="79" Height="42" FontSize="24" Click="btnLeave_Click"/>
 

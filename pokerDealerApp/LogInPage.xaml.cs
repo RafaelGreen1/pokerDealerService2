@@ -70,5 +70,11 @@ namespace pokerDealerApp
             this.txtUsermame.Text = "";
             this.txtPassword.Text = "";
         }
+
+        private async void btnReset_Click(object sender, RoutedEventArgs e)
+        {
+            await PokerDealerProxy.GameReset();
+            this.txtReset.Text = "Game data has been reset successfully!";
+        }
     }
 }

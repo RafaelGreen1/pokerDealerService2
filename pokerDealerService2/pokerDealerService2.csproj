@@ -255,6 +255,7 @@
     <Compile Include="Controllers\IsFreePlaceController.cs" />
     <Compile Include="Controllers\LogInUserController.cs" />
     <Compile Include="Controllers\MoveCurrentController.cs" />
+    <Compile Include="Controllers\MoveFirstPlayerController.cs" />
     <Compile Include="Controllers\MoveStateController.cs" />
     <Compile Include="Controllers\ReduceDollarsByIdController.cs" />
     <Compile Include="Controllers\SetGameTableController.cs" />

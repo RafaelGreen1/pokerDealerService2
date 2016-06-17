@@ -21,6 +21,8 @@
             </Button.Background>
         </Button>
         <TextBox x:Name="txtResult" HorizontalAlignment="Left" Height="40" Margin="129,299,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="390" FontSize="22" BorderThickness="0"/>
+        <Button x:Name="btnReset" Content="Reset all data" HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top" Height="60" Width="118" Click="btnReset_Click"/>
+        <TextBox x:Name="txtReset" HorizontalAlignment="Left" Margin="25,75,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="239" IsReadOnly="True" BorderThickness="0"/>
 
     </Grid>
 </Page>

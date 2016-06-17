@@ -40,7 +40,11 @@ namespace pokerDealerService2.Controllers
             myReader.Close();
             conn.Close();
 
-            current_id--;
+            if (active[0] == 0 && active[1] == 0 && active[2] == 0 && active[3] == 0)
+            {
+                return 0;
+            }
+                current_id--;
             do
             {
                 current_id = (current_id + 1) % 4;
@@ -69,7 +73,7 @@ namespace pokerDealerService2.Controllers
                     newState = "clear";
                 }
             }
-            sql = "UPDATE dbo.Game SET current_id=" + current_id + "', state='" + state + "';";
+            sql = "UPDATE dbo.Game SET current_id=" + current_id + ", state='" + newState + "';";
             cmd = new SqlCommand(sql, conn);
             conn.Open();
             int rowsAffected = cmd.ExecuteNonQuery();
