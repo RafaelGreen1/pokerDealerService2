@@ -41,6 +41,8 @@ namespace pokerDealerApp
                 this.txtResult.Text = "login failed, wrong credentials!";
                 return;
             }
+            App.username = this.txtUsermame.Text;
+            App.Id = resInt;
 
             res = await PokerDealerProxy.IsFreePlace();
             resInt = Int32.Parse(res);
@@ -58,9 +60,8 @@ namespace pokerDealerApp
                 return;
             }
 
-            App.username = this.txtUsermame.Text;
-            App.Id = resInt;
-            await PokerDealerProxy.FillFirstAvailableId(resInt);
+
+            await PokerDealerProxy.FillFirstAvailableId(App.Id);
             this.Frame.Navigate(typeof(gamePage));
         }
 
