@@ -253,10 +253,28 @@ namespace pokerDealerApp
             this.imgRiver.Visibility = Visibility.Visible;
         }
 
-        public void invertVisibility(Image img, int id)
+        public async void invertVisibility(Image img, int id)
         {
+
+            if (await PokerDealerProxy.GetIdByLocation(gameTable.current_id) == App.Id)
+            {
+                this.btnBet.IsEnabled = true;
+                this.btnCall.IsEnabled = true;
+                this.btnCheck.IsEnabled = true;
+                this.btnFold.IsEnabled = true;
+                this.btnSetWinner.IsEnabled = true;
+            } else
+            {
+                this.btnBet.IsEnabled = false;
+                this.btnCall.IsEnabled = false;
+                this.btnCheck.IsEnabled = false;
+                this.btnFold.IsEnabled = false;
+                this.btnSetWinner.IsEnabled = false;
+            }
             if (gameTable.current_id == id)
             {
+
+
                 if (img.Visibility == Visibility.Visible)
                 {
                     img.Visibility = Visibility.Collapsed;

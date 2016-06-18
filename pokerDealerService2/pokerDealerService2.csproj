@@ -252,6 +252,7 @@
     <Compile Include="Controllers\GameResetController.cs" />
     <Compile Include="Controllers\GetDollarsByIdController.cs" />
     <Compile Include="Controllers\GetGameTableController.cs" />
+    <Compile Include="Controllers\GetIdByLocationController.cs" />
     <Compile Include="Controllers\GetUsernameByIdController.cs" />
     <Compile Include="Controllers\IsActiveGameController.cs" />
     <Compile Include="Controllers\IsFreePlaceController.cs" />

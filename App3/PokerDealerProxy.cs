@@ -211,5 +211,15 @@ namespace pokerDealerApp
                 {
                 });
         }
+
+        public static async Task<int> GetIdByLocation(Int32 location)
+        {
+            return await App.MobileService.InvokeApiAsync<int>("GetIdByLocation/GetIdByLocation".ToLower(),
+                HttpMethod.Get,
+                new Dictionary<string, string>()
+                {
+                    {"location", location.ToString() },
+                });
+        }
     }
 }
