@@ -246,6 +246,8 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AddDollarsByUsernameController.cs" />
+    <Compile Include="Controllers\BetController.cs" />
+    <Compile Include="Controllers\CallController.cs" />
     <Compile Include="Controllers\FillFirstAvailabIeIdController.cs" />
     <Compile Include="Controllers\GameResetController.cs" />
     <Compile Include="Controllers\GetDollarsByIdController.cs" />
@@ -259,7 +261,9 @@
     <Compile Include="Controllers\MoveStateController.cs" />
     <Compile Include="Controllers\ReduceDollarsByIdController.cs" />
     <Compile Include="Controllers\SetGameTableController.cs" />
+    <Compile Include="Controllers\SetInActiveController.cs" />
     <Compile Include="Controllers\SignInController.cs" />
+    <Compile Include="Controllers\ZeroAllPotsController.cs" />
     <Compile Include="DataObjects\GameTable.cs" />
     <Compile Include="DataObjects\TodoItem.cs" />
     <Compile Include="Models\MobileServiceContext.cs" />

@@ -171,5 +171,45 @@ namespace pokerDealerApp
                 {
                 });
         }
+
+        public static async Task<int> SetInActive(Int32 Id)
+        {
+            return await App.MobileService.InvokeApiAsync<int>("SetInActive/SetInActive".ToLower(),
+                HttpMethod.Get,
+                new Dictionary<string, string>()
+                {
+                    {"Id", Id.ToString() }
+                });
+        }
+
+        public static async Task<int> Call(Int32 Id)
+        {
+            return await App.MobileService.InvokeApiAsync<int>("Call/Call".ToLower(),
+                HttpMethod.Get,
+                new Dictionary<string, string>()
+                {
+                    {"Id", Id.ToString() }
+                });
+        }
+
+        public static async Task<int> Bet(Int32 Id, Int32 dollars)
+        {
+            return await App.MobileService.InvokeApiAsync<int>("Bet/Bet".ToLower(),
+                HttpMethod.Get,
+                new Dictionary<string, string>()
+                {
+                    {"Id", Id.ToString() },
+                    {"dollars", dollars.ToString() }
+                });
+        }
+
+        public static async Task<int> ZeroAllPots()
+        {
+            return await App.MobileService.InvokeApiAsync<int>("ZeroAllPots/ZeroAllPots".ToLower(),
+                HttpMethod.Get,
+                new Dictionary<string, string>()
+                {
+                });
+        }
     }
 }

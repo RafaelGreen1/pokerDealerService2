@@ -2,6 +2,7 @@
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
+using System;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -274,9 +275,10 @@ namespace pokerDealerApp
             return;
         }
 
-        private void btnFold_Click(object sender, RoutedEventArgs e)
+        private async void btnFold_Click(object sender, RoutedEventArgs e)
         {
-
+            await PokerDealerProxy.SetInActive(App.Id);
+            await PokerDealerProxy.MoveCurrent();
         }
 
         private async void btnCheck_Click(object sender, RoutedEventArgs e)
@@ -284,18 +286,31 @@ namespace pokerDealerApp
             await PokerDealerProxy.MoveCurrent();
         }
 
-        private void btnCall_Click(object sender, RoutedEventArgs e)
+        private async void btnCall_Click(object sender, RoutedEventArgs e)
         {
-
+            await PokerDealerProxy.Call(App.Id);
+            await PokerDealerProxy.MoveCurrent();
         }
 
-        private void btnBet_Click(object sender, RoutedEventArgs e)
+        private async void btnBet_Click(object sender, RoutedEventArgs e)
         {
-
+            await PokerDealerProxy.Bet(App.Id, Int32.Parse(this.txtBet.ToString()));
+            await PokerDealerProxy.MoveCurrent();
         }
 
-        private void btnSetWinner_Click(object sender, RoutedEventArgs e)
+        private async void btnSetWinner_Click(object sender, RoutedEventArgs e)
         {
+            Int32 pot1 = (this.txtPot1.Text == "") ? 0 : Int32.Parse(this.txtPot1.Text);
+            Int32 pot2 = (this.txtPot2.Text == "") ? 0 : Int32.Parse(this.txtPot2.Text);
+            Int32 pot3 = (this.txtPot3.Text == "") ? 0 : Int32.Parse(this.txtPot3.Text);
+            Int32 pot4 = (this.txtPot4.Text == "") ? 0 : Int32.Parse(this.txtPot4.Text);
+            Int32 totalPot = pot1 + pot2 + pot3 + pot4;
+            GameTable gameTable = await PokerDealerProxy.GetGameTable();
+            if (pot1 > 0) await PokerDealerProxy.ReduceDollarsById(gameTable.Id1, pot1);
+            if (pot2 > 0) await PokerDealerProxy.ReduceDollarsById(gameTable.Id1, pot2);
+            if (pot3 > 0) await PokerDealerProxy.ReduceDollarsById(gameTable.Id1, pot3);
+            if (pot4 > 0) await PokerDealerProxy.ReduceDollarsById(gameTable.Id1, pot4);
+            await PokerDealerProxy.AddDollarsByUsername(this.cboWinner.SelectedItem.ToString(), totalPot);
 
         }
     }
