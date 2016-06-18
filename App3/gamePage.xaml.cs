@@ -311,6 +311,7 @@ namespace pokerDealerApp
         {
             await PokerDealerProxy.Bet(App.Id, Int32.Parse(this.txtBet.Text.ToString()));
             await PokerDealerProxy.MoveCurrent();
+            this.txtBet.Text = "";
         }
 
         private async void btnSetWinner_Click(object sender, RoutedEventArgs e)
