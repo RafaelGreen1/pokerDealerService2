@@ -24,7 +24,7 @@ namespace pokerDealerApp
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(LogInPage));
         }
 
         private async void btnStart_Click(object sender, RoutedEventArgs e)
@@ -75,101 +75,108 @@ namespace pokerDealerApp
         {
             while (true)
             {
-                await Task.Delay(500);
-                GameTable gameTable = await PokerDealerProxy.GetGameTable();
-
-                this.gameTable = gameTable;
-                string username1 = "", username2 = "", username3 = "", username4 = "";
-                string dollars1 = "", dollars2 = "", dollars3 = "", dollars4 = "";
-                string pot1 = "", pot2 = "", pot3 = "", pot4 = "";
-                if (gameTable.Id1 != 0)
+                try
                 {
-                    username1 = await PokerDealerProxy.GetUsernameById(gameTable.Id1);
-                    dollars1 = await PokerDealerProxy.GetDollarsById(gameTable.Id1);
-                    pot1 = gameTable.pot1.ToString() ;
+                    await Task.Delay(500);
+                    GameTable gameTable = await PokerDealerProxy.GetGameTable();
+
+                    this.gameTable = gameTable;
+                    string username1 = "", username2 = "", username3 = "", username4 = "";
+                    string dollars1 = "", dollars2 = "", dollars3 = "", dollars4 = "";
+                    string pot1 = "", pot2 = "", pot3 = "", pot4 = "";
+                    if (gameTable.Id1 != 0)
+                    {
+                        username1 = await PokerDealerProxy.GetUsernameById(gameTable.Id1);
+                        dollars1 = await PokerDealerProxy.GetDollarsById(gameTable.Id1);
+                        pot1 = gameTable.pot1.ToString();
+
+                    }
+                    if (gameTable.Id2 != 0)
+                    {
+                        username2 = await PokerDealerProxy.GetUsernameById(gameTable.Id2);
+                        dollars2 = await PokerDealerProxy.GetDollarsById(gameTable.Id2);
+                        pot2 = gameTable.pot2.ToString();
+                    }
+                    if (gameTable.Id3 != 0)
+                    {
+                        username3 = await PokerDealerProxy.GetUsernameById(gameTable.Id3);
+                        dollars3 = await PokerDealerProxy.GetDollarsById(gameTable.Id3);
+                        pot3 = gameTable.pot3.ToString();
+                    }
+                    if (gameTable.Id4 != 0)
+                    {
+                        username4 = await PokerDealerProxy.GetUsernameById(gameTable.Id4);
+                        dollars4 = await PokerDealerProxy.GetDollarsById(gameTable.Id4);
+                        pot4 = gameTable.pot4.ToString();
+                    }
+
+
+
+
+                    if (!username1.Equals(this.txtName1.Text) || !username2.Equals(this.txtName2.Text)
+                         || !username3.Equals(this.txtName3.Text) || !username4.Equals(this.txtName4.Text))
+                    {
+                        this.cboWinner.Items.Clear();
+                        if (username1 != "") this.cboWinner.Items.Add(username1);
+                        if (username2 != "") this.cboWinner.Items.Add(username2);
+                        if (username3 != "") this.cboWinner.Items.Add(username3);
+                        if (username4 != "") this.cboWinner.Items.Add(username4);
+                    }
+
+                    updateTextBox(this.txtName1, username1);
+                    updateTextBox(this.txtName2, username2);
+                    updateTextBox(this.txtName3, username3);
+                    updateTextBox(this.txtName4, username4);
+
+                    updateTextBox(this.txtTotal1, dollars1);
+                    updateTextBox(this.txtTotal2, dollars2);
+                    updateTextBox(this.txtTotal3, dollars3);
+                    updateTextBox(this.txtTotal4, dollars4);
+
+                    updateTextBox(this.txtPot1, pot1);
+                    updateTextBox(this.txtPot2, pot2);
+                    updateTextBox(this.txtPot3, pot3);
+                    updateTextBox(this.txtPot4, pot4);
+
+                    /* update cards */
+                    if (gameTable.state.Trim().Equals("clear"))
+                    {
+                        clearCards();
+                    }
+
+                    if (gameTable.state.Trim().Equals("dealed"))
+                    {
+                        dealCards(gameTable);
+                    }
+
+
+                    if (gameTable.state.Trim().Equals("flop"))
+                    {
+                        flopCards();
+                    }
+
+                    if (gameTable.state.Trim().Equals("turn"))
+                    {
+                        turnCard();
+                    }
+
+                    if (gameTable.state.Trim().Equals("river"))
+                    {
+                        riverCard();
+                    }
+
+                    invertVisibility(this.imgFace1, 1);
+                    invertVisibility(this.imgFace2, 2);
+                    invertVisibility(this.imgFace3, 3);
+                    invertVisibility(this.imgFace4, 4);
+
+
+                    clearInactiveCards(gameTable);
+                    clearNoUsers(gameTable);
+                } catch {
 
                 }
-                if (gameTable.Id2 != 0)
-                {
-                    username2 = await PokerDealerProxy.GetUsernameById(gameTable.Id2);
-                    dollars2 = await PokerDealerProxy.GetDollarsById(gameTable.Id2);
-                    pot2 = gameTable.pot2.ToString();
-                }
-                if (gameTable.Id3 != 0)
-                {
-                    username3 = await PokerDealerProxy.GetUsernameById(gameTable.Id3);
-                    dollars3 = await PokerDealerProxy.GetDollarsById(gameTable.Id3);
-                    pot3 = gameTable.pot3.ToString();
-                }
-                if (gameTable.Id4 != 0)
-                {
-                    username4 = await PokerDealerProxy.GetUsernameById(gameTable.Id4);
-                    dollars4 = await PokerDealerProxy.GetDollarsById(gameTable.Id4);
-                    pot4 = gameTable.pot4.ToString();
-                }
-
-
-
-
-                if (!username1.Equals(this.txtName1.Text) || !username2.Equals(this.txtName2.Text)
-                     || !username3.Equals(this.txtName3.Text) || !username4.Equals(this.txtName4.Text))
-                {
-                    this.cboWinner.Items.Clear();
-                    if (username1 != "") this.cboWinner.Items.Add(username1);
-                    if (username2 != "") this.cboWinner.Items.Add(username2);
-                    if (username3 != "") this.cboWinner.Items.Add(username3);
-                    if (username4 != "") this.cboWinner.Items.Add(username4);
-                }
-
-                updateTextBox(this.txtName1, username1);
-                updateTextBox(this.txtName2, username2);
-                updateTextBox(this.txtName3, username3);
-                updateTextBox(this.txtName4, username4);
-
-                updateTextBox(this.txtTotal1, dollars1);
-                updateTextBox(this.txtTotal2, dollars2);
-                updateTextBox(this.txtTotal3, dollars3);
-                updateTextBox(this.txtTotal4, dollars4);
-
-                updateTextBox(this.txtPot1, pot1);
-                updateTextBox(this.txtPot2, pot2);
-                updateTextBox(this.txtPot3, pot3);
-                updateTextBox(this.txtPot4, pot4);
-
-                /* update cards */
-                if (gameTable.state.Trim().Equals("clear"))
-                {
-                    clearCards();
-                }
-
-                if (gameTable.state.Trim().Equals("dealed"))
-                {
-                    dealCards(gameTable);
-                }
-
-
-                if (gameTable.state.Trim().Equals("flop"))
-                {
-                    flopCards();
-                }
-
-                if (gameTable.state.Trim().Equals("turn"))
-                {
-                    turnCard();
-                }
-
-                if (gameTable.state.Trim().Equals("river"))
-                {
-                    riverCard();
-                }
-
-                invertVisibility(this.imgFace1, 1);
-                invertVisibility(this.imgFace2, 2);
-                invertVisibility(this.imgFace3, 3);
-                invertVisibility(this.imgFace4, 4);
-
-
-                clearInactiveCards(gameTable);
+                
             }
 
         }
@@ -189,6 +196,14 @@ namespace pokerDealerApp
             if (gameTable.active2 == 0) this.imgCard22.Visibility = Visibility.Collapsed;
             if (gameTable.active3 == 0) this.imgCard23.Visibility = Visibility.Collapsed;
             if (gameTable.active4 == 0) this.imgCard24.Visibility = Visibility.Collapsed;
+        }
+
+        private void clearNoUsers(GameTable gameTable)
+        {
+            if (gameTable.Id1 == 0) this.imgFace1.Visibility = Visibility.Collapsed;
+            if (gameTable.Id2 == 0) this.imgFace2.Visibility = Visibility.Collapsed;
+            if (gameTable.Id3 == 0) this.imgFace3.Visibility = Visibility.Collapsed;
+            if (gameTable.Id4 == 0) this.imgFace4.Visibility = Visibility.Collapsed;
         }
 
         public void clearCards()
@@ -294,12 +309,13 @@ namespace pokerDealerApp
 
         private async void btnBet_Click(object sender, RoutedEventArgs e)
         {
-            await PokerDealerProxy.Bet(App.Id, Int32.Parse(this.txtBet.ToString()));
+            await PokerDealerProxy.Bet(App.Id, Int32.Parse(this.txtBet.Text.ToString()));
             await PokerDealerProxy.MoveCurrent();
         }
 
         private async void btnSetWinner_Click(object sender, RoutedEventArgs e)
         {
+            if (this.cboWinner.SelectedItem == null) return;
             Int32 pot1 = (this.txtPot1.Text == "") ? 0 : Int32.Parse(this.txtPot1.Text);
             Int32 pot2 = (this.txtPot2.Text == "") ? 0 : Int32.Parse(this.txtPot2.Text);
             Int32 pot3 = (this.txtPot3.Text == "") ? 0 : Int32.Parse(this.txtPot3.Text);
