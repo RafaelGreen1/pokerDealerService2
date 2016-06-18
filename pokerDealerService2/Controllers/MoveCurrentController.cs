@@ -24,6 +24,7 @@ namespace pokerDealerService2.Controllers
             string newState = "clear";
             SqlConnection conn = new SqlConnection("Data Source=az4x4aulim.database.windows.net;Initial Catalog=pokerDealerService_db;Integrated Security=False;User ID=raf;Password=20031363rT;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             String sql = "SELECT * FROM dbo.Game";
+            String sql2 = "";
             SqlCommand cmd = new SqlCommand(sql, conn);
 
             conn.Open();
@@ -59,21 +60,24 @@ namespace pokerDealerService2.Controllers
                 else if (state.Equals("dealed"))
                 {
                     newState = "flop";
+                    sql2 = "UPDATE dbo.Game SET currentFirstPlayer=firstPlayer, current_id=firstPlayer;";
                 }
                 else if (state.Equals("flop"))
                 {
                     newState = "turn";
+                    sql2 = "UPDATE dbo.Game SET currentFirstPlayer=firstPlayer, current_id=firstPlayer;";
                 }
                 else if (state.Equals("turn"))
                 {
                     newState = "river";
+                    sql2 = "UPDATE dbo.Game SET currentFirstPlayer=firstPlayer, current_id=firstPlayer;";
                 }
                 else if (state.Equals("river"))
                 {
                     newState = "clear";
                 }
             }
-            sql = "UPDATE dbo.Game SET current_id=" + current_id + ", state='" + newState + "';";
+            sql = "UPDATE dbo.Game SET current_id=" + current_id + ", state='" + newState + "';" + sql2;
             cmd = new SqlCommand(sql, conn);
             conn.Open();
             int rowsAffected = cmd.ExecuteNonQuery();

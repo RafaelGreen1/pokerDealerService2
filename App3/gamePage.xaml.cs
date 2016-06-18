@@ -267,7 +267,8 @@ namespace pokerDealerApp
         public async void invertVisibility(Image img, int id)
         {
 
-            if (gameTable.current_id != 0 && await PokerDealerProxy.GetIdByLocation(gameTable.current_id) == App.Id)
+            if (gameTable.current_id != 0 && await PokerDealerProxy.GetIdByLocation(gameTable.current_id) == App.Id
+                && !gameTable.state.Trim().Equals("river"))
             {
                 this.btnBet.IsEnabled = true;
                 this.btnCall.IsEnabled = true;
@@ -280,9 +281,18 @@ namespace pokerDealerApp
                 this.btnCall.IsEnabled = false;
                 this.btnCheck.IsEnabled = false;
                 this.btnFold.IsEnabled = false;
-                this.btnSetWinner.IsEnabled = false;
+                if (gameTable.current_id != 0 && await PokerDealerProxy.GetIdByLocation(gameTable.current_id) == App.Id
+                    && gameTable.state.Trim().Equals("river"))
+                {
+                    this.btnSetWinner.IsEnabled = true;
+                } else
+                {
+                    this.btnSetWinner.IsEnabled = false;
+                }
+
             }
-            if (gameTable.current_id == id)
+
+                if (gameTable.current_id == id)
             {
                 if (img.Visibility == Visibility.Visible)
                 {
