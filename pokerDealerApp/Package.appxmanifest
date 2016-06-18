@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="8729f2af-db2e-4869-a937-e8b0666145b9" Publisher="CN=Arpaxad" Version="1.0.7.0" />
+  <Identity Name="8729f2af-db2e-4869-a937-e8b0666145b94" Publisher="CN=Arpaxad" Version="4.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="8729f2af-db2e-4869-a937-e8b0666145b9" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>pokerDealerApp</DisplayName>
+    <DisplayName>pokerDealerApp4</DisplayName>
     <PublisherDisplayName>Arpaxad</PublisherDisplayName>
     <Logo>Assets\poker.jpg</Logo>
   </Properties>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="pokerDealerApp.App">
-      <uap:VisualElements DisplayName="pokerDealerApp" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="pokerDealerApp" BackgroundColor="transparent">
+      <uap:VisualElements DisplayName="pokerDealerApp4" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="pokerDealerApp" BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" ShortName="Poker Dealer">
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
