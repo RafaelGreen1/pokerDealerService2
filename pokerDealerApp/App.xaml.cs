@@ -110,7 +110,9 @@ namespace pokerDealerApp
         public static IMobileServiceClient MobileService = new
             MobileServiceClient("http://pokerdealerservice2.azure-mobile.net/",
                 "zMExGHxmtuExpMtwuKzJfhJAJpcunv63");
+        public static Bluetooth bluetooth = new Bluetooth();
         public static Int32 Id = 0;
         public static string username = "";
+
     }
 }

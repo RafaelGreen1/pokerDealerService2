@@ -60,9 +60,16 @@ namespace pokerDealerApp
                 return;
             }
 
+            string btRes = await App.bluetooth.ConnectToArduino();
+            if (!btRes.Equals(""))
+            {
+                this.txtResult.Text = btRes;
+                return;
+            }
 
             await PokerDealerProxy.FillFirstAvailableId(App.Id);
             this.Frame.Navigate(typeof(gamePage));
+
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)

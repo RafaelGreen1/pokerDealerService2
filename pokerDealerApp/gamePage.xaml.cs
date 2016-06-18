@@ -80,6 +80,62 @@ namespace pokerDealerApp
                     await Task.Delay(500);
                     GameTable gameTable = await PokerDealerProxy.GetGameTable();
 
+                    /* find out if I'm the first active player */
+                    Int32 firstPlayer = 0;
+                    Boolean isFirstPlayer = false;
+                    if (gameTable.active4 > 0) firstPlayer = 4;
+                    if (gameTable.active3 > 0) firstPlayer = 3;
+                    if (gameTable.active2 > 0) firstPlayer = 2;
+                    if (gameTable.active1 > 0) firstPlayer = 1;
+                    if (firstPlayer == 1 && gameTable.Id1 == App.Id) isFirstPlayer = true;
+                    if (firstPlayer == 2 && gameTable.Id2 == App.Id) isFirstPlayer = true;
+                    if (firstPlayer == 3 && gameTable.Id3 == App.Id) isFirstPlayer = true;
+                    if (firstPlayer == 4 && gameTable.Id4 == App.Id) isFirstPlayer = true;
+                    /*******************************************/
+                    if (isFirstPlayer)
+                    {
+                        /* If I'm the first active player, update the bluetooth arduino */
+                        if (gameTable.Id1 != this.gameTable.Id1 || gameTable.Id2 != this.gameTable.Id2 ||
+                            gameTable.Id3 != this.gameTable.Id3 || gameTable.Id4 != this.gameTable.Id4)
+                        {
+                            /* set players */
+                            await App.bluetooth.sendData("s");
+                            if (gameTable.Id1 == 0)
+                                await App.bluetooth.sendData("0");
+                            else
+                                await App.bluetooth.sendData("1");
+                            if (gameTable.Id2 == 0)
+                                await App.bluetooth.sendData("0");
+                            else
+                                await App.bluetooth.sendData("1");
+                            if (gameTable.Id3 == 0)
+                                await App.bluetooth.sendData("0");
+                            else
+                                await App.bluetooth.sendData("1");
+                            if (gameTable.Id4 == 0)
+                                await App.bluetooth.sendData("0");
+                            else
+                                await App.bluetooth.sendData("1");
+                        }
+                        if (this.gameTable.state.Trim().Equals("clear")
+                            & gameTable.state.Trim().Equals("dealed"))
+                        {
+                            await App.bluetooth.sendData("d");
+                        } else if (this.gameTable.state.Trim().Equals("dealed")
+                          & gameTable.state.Trim().Equals("flop"))
+                        {
+                            await App.bluetooth.sendData("f");
+                        } else if (this.gameTable.state.Trim().Equals("flop")
+                            & gameTable.state.Trim().Equals("trun"))
+                        {
+                            await App.bluetooth.sendData("t");
+                        }  else if (this.gameTable.state.Trim().Equals("turn")
+                            & gameTable.state.Trim().Equals("river"))
+                        {
+                            await App.bluetooth.sendData("r");
+                        }
+                    }
+
                     this.gameTable = gameTable;
                     string username1 = "", username2 = "", username3 = "", username4 = "";
                     string dollars1 = "", dollars2 = "", dollars3 = "", dollars4 = "";
