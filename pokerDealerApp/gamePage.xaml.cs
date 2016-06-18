@@ -138,6 +138,12 @@ namespace pokerDealerApp
                     updateTextBox(this.txtPot3, pot3);
                     updateTextBox(this.txtPot4, pot4);
 
+                    Int32 totalPot = (this.txtPot1.Text.Equals("")) ? 0 : Int32.Parse(this.txtPot1.Text);
+                    totalPot += (this.txtPot2.Text.Equals("")) ? 0 : Int32.Parse(this.txtPot2.Text);
+                    totalPot += (this.txtPot3.Text.Equals("")) ? 0 : Int32.Parse(this.txtPot3.Text);
+                    totalPot += (this.txtPot4.Text.Equals("")) ? 0 : Int32.Parse(this.txtPot4.Text);
+                    updateTextBox(this.txtTotalPot, totalPot.ToString());
+
                     /* update cards */
                     if (gameTable.state.Trim().Equals("clear"))
                     {
@@ -234,6 +240,11 @@ namespace pokerDealerApp
             if (gameTable.active2 == 1) this.imgCard22.Visibility = Visibility.Visible;
             if (gameTable.active3 == 1) this.imgCard23.Visibility = Visibility.Visible;
             if (gameTable.active4 == 1) this.imgCard24.Visibility = Visibility.Visible;
+            this.imgFlop1.Visibility = Visibility.Collapsed;
+            this.imgFlop2.Visibility = Visibility.Collapsed;
+            this.imgFlop3.Visibility = Visibility.Collapsed;
+            this.imgTurn.Visibility  = Visibility.Collapsed;
+            this.imgRiver.Visibility = Visibility.Collapsed;
         }
 
         public void flopCards()
@@ -351,6 +362,7 @@ namespace pokerDealerApp
             if (pot4 > 0) await PokerDealerProxy.ReduceDollarsById(gameTable.Id4, pot4);
             await PokerDealerProxy.AddDollarsByUsername(this.cboWinner.SelectedItem.ToString(), totalPot);
             await PokerDealerProxy.ZeroAllPots();
+            this.cboWinner.SelectedItem = null;
         }
     }
 }

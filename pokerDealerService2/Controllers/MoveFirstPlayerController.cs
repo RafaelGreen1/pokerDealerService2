@@ -43,7 +43,8 @@ namespace pokerDealerService2.Controllers
                 firstPlayer = (firstPlayer + 1) % 4;
             } while (Id[firstPlayer] == 0);
             firstPlayer++;
-            sql = "UPDATE dbo.Game SET firstPlayer=" + firstPlayer + ";";
+            sql = "UPDATE dbo.Game SET firstPlayer=" + firstPlayer + ", current_id=" + firstPlayer +
+                ", currentFirstPlayer=" + firstPlayer +";";
             cmd = new SqlCommand(sql, conn);
             conn.Open();
             int rowsAffected = cmd.ExecuteNonQuery();
