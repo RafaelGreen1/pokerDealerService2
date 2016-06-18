@@ -256,7 +256,7 @@ namespace pokerDealerApp
         public async void invertVisibility(Image img, int id)
         {
 
-            if (await PokerDealerProxy.GetIdByLocation(gameTable.current_id) == App.Id)
+            if (gameTable.current_id != 0 && await PokerDealerProxy.GetIdByLocation(gameTable.current_id) == App.Id)
             {
                 this.btnBet.IsEnabled = true;
                 this.btnCall.IsEnabled = true;
@@ -273,8 +273,6 @@ namespace pokerDealerApp
             }
             if (gameTable.current_id == id)
             {
-
-
                 if (img.Visibility == Visibility.Visible)
                 {
                     img.Visibility = Visibility.Collapsed;
@@ -285,7 +283,13 @@ namespace pokerDealerApp
                 }
             } else
             {
-                img.Visibility = Visibility.Visible;
+                if ((gameTable.Id1 != 0 && id == 1) ||
+                    (gameTable.Id2 != 0 && id == 2) ||
+                    (gameTable.Id3 != 0 && id == 3) ||
+                    (gameTable.Id4 != 0 && id == 4))
+                {
+                    img.Visibility = Visibility.Visible;
+                }
             }
         }
 
@@ -342,11 +346,11 @@ namespace pokerDealerApp
             Int32 totalPot = pot1 + pot2 + pot3 + pot4;
             GameTable gameTable = await PokerDealerProxy.GetGameTable();
             if (pot1 > 0) await PokerDealerProxy.ReduceDollarsById(gameTable.Id1, pot1);
-            if (pot2 > 0) await PokerDealerProxy.ReduceDollarsById(gameTable.Id1, pot2);
-            if (pot3 > 0) await PokerDealerProxy.ReduceDollarsById(gameTable.Id1, pot3);
-            if (pot4 > 0) await PokerDealerProxy.ReduceDollarsById(gameTable.Id1, pot4);
+            if (pot2 > 0) await PokerDealerProxy.ReduceDollarsById(gameTable.Id2, pot2);
+            if (pot3 > 0) await PokerDealerProxy.ReduceDollarsById(gameTable.Id3, pot3);
+            if (pot4 > 0) await PokerDealerProxy.ReduceDollarsById(gameTable.Id4, pot4);
             await PokerDealerProxy.AddDollarsByUsername(this.cboWinner.SelectedItem.ToString(), totalPot);
-
+            await PokerDealerProxy.ZeroAllPots();
         }
     }
 }
