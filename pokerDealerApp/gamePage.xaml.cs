@@ -35,7 +35,8 @@ namespace pokerDealerApp
             {
                 gameTable.current_id = 4;
                 gameTable.active4 = 1;
-            } else
+            }
+            else
             {
                 gameTable.active4 = 0;
             }
@@ -43,7 +44,8 @@ namespace pokerDealerApp
             {
                 gameTable.current_id = 3;
                 gameTable.active3 = 1;
-            } else
+            }
+            else
             {
                 gameTable.active3 = 0;
             }
@@ -51,7 +53,8 @@ namespace pokerDealerApp
             {
                 gameTable.current_id = 2;
                 gameTable.active2 = 1;
-            } else
+            }
+            else
             {
                 gameTable.active2 = 0;
             }
@@ -59,7 +62,8 @@ namespace pokerDealerApp
             {
                 gameTable.current_id = 1;
                 gameTable.active1 = 1;
-            } else
+            }
+            else
             {
                 gameTable.active1 = 0;
             }
@@ -95,8 +99,7 @@ namespace pokerDealerApp
                     if (isFirstPlayer)
                     {
                         /* If I'm the first active player, update the bluetooth arduino */
-                        if (gameTable.Id1 != this.gameTable.Id1 || gameTable.Id2 != this.gameTable.Id2 ||
-                            gameTable.Id3 != this.gameTable.Id3 || gameTable.Id4 != this.gameTable.Id4)
+                        if (this.gameTable.state.Trim().Equals("clear") && gameTable.state.Trim().Equals("dealed"))
                         {
                             /* set players */
                             await App.bluetooth.sendData("s");
@@ -114,23 +117,28 @@ namespace pokerDealerApp
                                 await App.bluetooth.sendData("1");
                             if (gameTable.Id4 == 0)
                                 await App.bluetooth.sendData("0");
-                            else
-                                await App.bluetooth.sendData("1");
+                        }
+                        else
+                        {
+                            await App.bluetooth.sendData("1");
                         }
                         if (this.gameTable.state.Trim().Equals("clear")
                             & gameTable.state.Trim().Equals("dealed"))
                         {
                             await App.bluetooth.sendData("d");
-                        } else if (this.gameTable.state.Trim().Equals("dealed")
-                          & gameTable.state.Trim().Equals("flop"))
+                        }
+                        else if (this.gameTable.state.Trim().Equals("dealed")
+                        & gameTable.state.Trim().Equals("flop"))
                         {
                             await App.bluetooth.sendData("f");
-                        } else if (this.gameTable.state.Trim().Equals("flop")
-                            & gameTable.state.Trim().Equals("trun"))
+                        }
+                        else if (this.gameTable.state.Trim().Equals("flop")
+                          & gameTable.state.Trim().Equals("turn"))
                         {
                             await App.bluetooth.sendData("t");
-                        }  else if (this.gameTable.state.Trim().Equals("turn")
-                            & gameTable.state.Trim().Equals("river"))
+                        }
+                        else if (this.gameTable.state.Trim().Equals("turn")
+                         & gameTable.state.Trim().Equals("river"))
                         {
                             await App.bluetooth.sendData("r");
                         }
@@ -235,10 +243,12 @@ namespace pokerDealerApp
 
                     clearInactiveCards(gameTable);
                     clearNoUsers(gameTable);
-                } catch {
+                }
+                catch
+                {
 
                 }
-                
+
             }
 
         }
@@ -299,7 +309,7 @@ namespace pokerDealerApp
             this.imgFlop1.Visibility = Visibility.Collapsed;
             this.imgFlop2.Visibility = Visibility.Collapsed;
             this.imgFlop3.Visibility = Visibility.Collapsed;
-            this.imgTurn.Visibility  = Visibility.Collapsed;
+            this.imgTurn.Visibility = Visibility.Collapsed;
             this.imgRiver.Visibility = Visibility.Collapsed;
         }
 
@@ -331,7 +341,8 @@ namespace pokerDealerApp
                 this.btnCheck.IsEnabled = true;
                 this.btnFold.IsEnabled = true;
                 this.btnSetWinner.IsEnabled = true;
-            } else
+            }
+            else
             {
                 this.btnBet.IsEnabled = false;
                 this.btnCall.IsEnabled = false;
@@ -341,14 +352,15 @@ namespace pokerDealerApp
                     && gameTable.state.Trim().Equals("river"))
                 {
                     this.btnSetWinner.IsEnabled = true;
-                } else
+                }
+                else
                 {
                     this.btnSetWinner.IsEnabled = false;
                 }
 
             }
 
-                if (gameTable.current_id == id)
+            if (gameTable.current_id == id)
             {
                 if (img.Visibility == Visibility.Visible)
                 {
@@ -358,7 +370,8 @@ namespace pokerDealerApp
                 {
                     img.Visibility = Visibility.Visible;
                 }
-            } else
+            }
+            else
             {
                 if ((gameTable.Id1 != 0 && id == 1) ||
                     (gameTable.Id2 != 0 && id == 2) ||
@@ -383,7 +396,7 @@ namespace pokerDealerApp
                 await PokerDealerProxy.GameReset();
                 return;
             }
-            
+
 
             await PokerDealerProxy.SetGameTable(gameTable);
             return;
