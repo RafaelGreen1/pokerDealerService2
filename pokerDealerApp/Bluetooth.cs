@@ -30,12 +30,24 @@ namespace pokerDealerApp
 
         public async Task<string> ConnectToArduino()
         {
-
-            var aqsFilter = SerialDevice.GetDeviceSelector("COM6");
-            var devices = await DeviceInformation.FindAllAsync(aqsFilter);
+            string deviceName = "Rafi";
+            string deviceName2 = "SER";
+            DeviceInformation selectedDevice;
+            string deviceId = "";
+            DeviceInformationCollection devices = await DeviceInformation.FindAllAsync();
             if (devices.Any())
             {
-                var deviceId = devices.First().Id;
+                foreach (var item in devices)
+                {
+                    if (item.Name == deviceName || item.Name == deviceName2)
+                    {
+                        selectedDevice = item;
+                        deviceId = selectedDevice.Id;
+                        break;
+                    }
+                }
+                
+               
                 serialPort = await SerialDevice.FromIdAsync(deviceId);
 
                 if (serialPort != null)
